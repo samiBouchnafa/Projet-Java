@@ -74,7 +74,7 @@ public class GestionTrajet extends javax.swing.JFrame {
         SpinnerListModel model1 = new SpinnerListModel(timeArray);
         HeureArrive = new javax.swing.JSpinner(model1);
         jLabel7 = new javax.swing.JLabel();
-        PlaceDisponible = new javax.swing.JTextField();
+        PlaceDisponibleClasse1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         GtEditerBTN = new javax.swing.JButton();
         GtSupprimerBTN = new javax.swing.JButton();
@@ -82,6 +82,8 @@ public class GestionTrajet extends javax.swing.JFrame {
         GtAjouterBTN = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         GtTrajetTable = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        PlaceDisponibleClasse2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,7 +131,7 @@ public class GestionTrajet extends javax.swing.JFrame {
         jLabel7.setText("Heure arrivé");
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel8.setText("Places dispo");
+        jLabel8.setText("Places dispo 1");
 
         GtEditerBTN.setText("EDITER");
         GtEditerBTN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,6 +184,9 @@ public class GestionTrajet extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(GtTrajetTable);
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel9.setText("Places dispo 2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,50 +236,62 @@ public class GestionTrajet extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(HeureArrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PlaceDisponible)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                        .addGap(21, 21, 21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(175, 175, 175)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(GtEditerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(GtRetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PlaceDisponibleClasse2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(PlaceDisponibleClasse1)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TrajetId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Origine, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Destination, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(PlaceDisponible, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(HeureDepart, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(HeureArrive, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(GtAjouterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GtEditerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(GtSupprimerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GtRetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(TrajetId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Origine, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Destination, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(HeureDepart, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(HeureArrive, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(GtAjouterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GtEditerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(GtSupprimerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GtRetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(PlaceDisponibleClasse1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PlaceDisponibleClasse2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -325,8 +342,8 @@ public class GestionTrajet extends javax.swing.JFrame {
         }else {
             try {
                  CalculID();
-                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb" , "root" , "root");
-                 PreparedStatement Add = Con.prepareStatement("insert into trajettable values (?,?,?,?,?,?,?)");
+                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb" , "root" , "");
+                 PreparedStatement Add = Con.prepareStatement("insert into trajettable values (?,?,?,?,?,?,?,?)");
                  Add.setInt(1, ID);
                  Add.setString(2, Origine.getSelectedItem().toString());
                  Add.setString(3, Destination.getSelectedItem().toString());
@@ -339,7 +356,8 @@ public class GestionTrajet extends javax.swing.JFrame {
                  
                  Add.setString(5, HeureDepart.getValue().toString());
                  Add.setString(6, HeureArrive.getValue().toString());
-                 Add.setInt(7, Integer.valueOf(PlaceDisponible.getText()));
+                 Add.setInt(7, Integer.valueOf(PlaceDisponibleClasse1.getText()));
+                 Add.setInt(7, Integer.valueOf(PlaceDisponibleClasse2.getText()));
                  
                  int raw = Add.executeUpdate();
                  JOptionPane.showMessageDialog(this, "Trajet Ajouté");
@@ -366,7 +384,8 @@ public class GestionTrajet extends javax.swing.JFrame {
         ((JSpinner.DefaultEditor) HeureDepart.getEditor()).getTextField().setText(model.getValueAt(MyIndex, 4).toString());
         ((JSpinner.DefaultEditor) HeureArrive.getEditor()).getTextField().setText(model.getValueAt(MyIndex, 5).toString());
 
-        PlaceDisponible.setText(model.getValueAt(MyIndex , 6).toString());
+        PlaceDisponibleClasse1.setText(model.getValueAt(MyIndex , 6).toString());
+        PlaceDisponibleClasse2.setText(model.getValueAt(MyIndex , 7).toString());
     }//GEN-LAST:event_GtTrajetTableMouseClicked
 
     private void DateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DateMouseClicked
@@ -381,8 +400,8 @@ public class GestionTrajet extends javax.swing.JFrame {
         }else{
             CalculID();  
             try {
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root" , "root");
-                 String Query ="Update trajettable set OrigineTbl=?, DestinationTbl=?, DateTbl=?, HeureDepartTbl=?, HeureArriveTbl=?, PlaceDisponibleTbl=? where TrajetIdTbl=?";
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root" , "");
+                 String Query ="Update trajettable set OrigineTbl=?, DestinationTbl=?, DateTbl=?, HeureDepartTbl=?, HeureArriveTbl=?, PlaceDisponibleClasse1Tbl=?, PlaceDiponibleClasse2Tbl=? where TrajetIdTbl=?";
                  PreparedStatement Add = Con.prepareStatement(Query);
    
                  Add.setString(1, Origine.getSelectedItem().toString());
@@ -396,29 +415,31 @@ public class GestionTrajet extends javax.swing.JFrame {
                  
                  Add.setString(4, HeureDepart.getValue().toString());
                  Add.setString(5, HeureArrive.getValue().toString());
-                 Add.setInt(6, Integer.valueOf(PlaceDisponible.getText()));
-                 Add.setInt(7, i);
+                 Add.setInt(6, Integer.valueOf(PlaceDisponibleClasse1.getText()));
+                 Add.setInt(7, Integer.valueOf(PlaceDisponibleClasse2.getText()));
+
+                 Add.setInt(8, i);
                  
                  int raw = Add.executeUpdate();
                  JOptionPane.showMessageDialog(this, "Trajet Modifié");
                  AfficherTrajet();
                  Clear();
                 
-            } catch (SQLException ex) {
-                Logger.getLogger(GestionTrajet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, e);
             }
          
         }
     }//GEN-LAST:event_GtEditerBTNMouseClicked
 
     private void GtSupprimerBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GtSupprimerBTNMouseClicked
-        if(i==3000){
+        if(i==0){
             JOptionPane.showMessageDialog(this, "Veuillez Selectionner un trajet à Suuprimer !");
             
         }else{
             CalculID();  
             try {
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root" , "root");
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root" , "");
                 String Query ="Delete from trajettable where TrajetIdTbl=" + i;
                 Statement Deletion = Con.createStatement();
                 Deletion.executeUpdate(Query);
@@ -440,7 +461,7 @@ public class GestionTrajet extends javax.swing.JFrame {
 
     private void AfficherTrajet(){
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb" , "root" , "root");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb" , "root" , "");
             St = Con.createStatement();
             Rs = St.executeQuery("select * from trajettable");
             
@@ -519,7 +540,8 @@ public class GestionTrajet extends javax.swing.JFrame {
     private javax.swing.JSpinner HeureArrive;
     private javax.swing.JSpinner HeureDepart;
     private javax.swing.JComboBox<String> Origine;
-    private javax.swing.JTextField PlaceDisponible;
+    private javax.swing.JTextField PlaceDisponibleClasse1;
+    private javax.swing.JTextField PlaceDisponibleClasse2;
     private javax.swing.JTextField TrajetId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -529,6 +551,7 @@ public class GestionTrajet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
