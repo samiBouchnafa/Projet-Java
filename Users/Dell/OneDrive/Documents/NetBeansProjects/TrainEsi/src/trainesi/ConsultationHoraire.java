@@ -63,6 +63,8 @@ public class ConsultationHoraire extends javax.swing.JFrame {
         PaimentBTN = new javax.swing.JButton();
         ID = new javax.swing.JTextField();
         Date = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        Classe = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,6 +152,10 @@ public class ConsultationHoraire extends javax.swing.JFrame {
 
         ID.setEditable(false);
 
+        jLabel5.setText("Classe");
+
+        Classe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "1" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,7 +193,11 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                                         .addComponent(PaimentBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(67, 67, 67)
-                                        .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(85, 85, 85)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Classe, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(GtRetablirBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,14 +221,18 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                .addComponent(jLabel5))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Classe, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(GtSearchBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,31 +285,41 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                st = con.createStatement();
                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                  String formattedDate = sdf.format(Date.getDate());
-                rs = st.executeQuery("SELECT * FROM trajettable WHERE OrigineTbl='" + Origine.getSelectedItem().toString() + "' AND DestinationTbl='" + Destination.getSelectedItem().toString() + "' AND DateTbl='" + formattedDate + "'");
+                 
+                 String PDCi ="PlaceDisponibleClasse" + Classe.getSelectedItem().toString()+"Tbl";
+                rs = st.executeQuery("SELECT * FROM trajettable WHERE OrigineTbl='" + Origine.getSelectedItem().toString() + "' AND DestinationTbl='" + Destination.getSelectedItem().toString() + "' AND DateTbl='" + formattedDate + "'AND "+PDCi+" > 0");
                 //Taking rows from Rs and displaying it to the table 
-                DefaultTableModel model = new DefaultTableModel();
-                jTable1.setModel(model);
-                ResultSetMetaData rsmd = rs.getMetaData();
-                int columnCount = rsmd.getColumnCount();
- 
-                // Add column names to the model
-            for (int i = 1; i <= columnCount-1; i++) {
-                model.addColumn(rsmd.getColumnName(i));
-            }
+                if ( rs.getInt("PDCi") == 0) {
+        JOptionPane.showMessageDialog(this, "Place épuisée");
+    }
+    else{
+                    DefaultTableModel model = new DefaultTableModel();
+                    jTable1.setModel(model);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
 
-            // Add data rows to the model
-            while (rs.next()) {
-                Object[] row = new Object[columnCount];
+                    // Add column names to the model
                 for (int i = 1; i <= columnCount-1; i++) {
-                    row[i - 1] = rs.getObject(i);
+                    model.addColumn(rsmd.getColumnName(i));
                 }
-                model.addRow(row);
-            }
-            }catch (SQLException e) {
-                    System.err.println("Error executing query: " +e.getMessage());
-}
 
-        }
+                // Add data rows to the model
+                while (rs.next()) {
+                    Object[] row = new Object[columnCount];
+                    for (int i = 1; i <= columnCount; i++) {
+                        row[i - 1] = rs.getObject(i);
+                    }
+                    model.addRow(row);
+                }
+                
+                }
+            }
+            catch (SQLException e) {
+                        System.err.println("Error executing query: " +e.getMessage());
+    }
+
+
+            }
     }//GEN-LAST:event_GtSearchBTNMouseClicked
 
     private void GtRetablirBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GtRetablirBTNMouseClicked
@@ -361,6 +385,7 @@ public class ConsultationHoraire extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Classe;
     private com.toedter.calendar.JDateChooser Date;
     private javax.swing.JComboBox<String> Destination;
     private javax.swing.JButton GtRetablirBTN;
@@ -373,6 +398,7 @@ public class ConsultationHoraire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
