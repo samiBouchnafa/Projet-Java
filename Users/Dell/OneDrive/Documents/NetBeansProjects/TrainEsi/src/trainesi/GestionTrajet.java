@@ -84,6 +84,7 @@ public class GestionTrajet extends javax.swing.JFrame {
         GtTrajetTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         PlaceDisponibleClasse2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,6 +188,13 @@ public class GestionTrajet extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setText("Places dispo 2");
 
+        jButton1.setText("Recherche Avancée");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,6 +258,10 @@ public class GestionTrajet extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(399, 399, 399)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,8 +305,10 @@ public class GestionTrajet extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PlaceDisponibleClasse2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -321,8 +335,8 @@ public class GestionTrajet extends javax.swing.JFrame {
         Origine.setSelectedIndex(-1);
         Destination.setSelectedIndex(-1);
         Date.setDate(new Date(124,0,1));
-        HeureDepart.setValue("");
-        HeureArrive.setValue("");
+        HeureDepart.setValue("00:00");
+        HeureArrive.setValue("00:00");
         
     }
     
@@ -333,12 +347,37 @@ public class GestionTrajet extends javax.swing.JFrame {
             Rs1.next();
             ID = Rs1.getInt(1)+1;
         } catch(Exception e) {
+            // This exception is prompted by GTP 3.5 to make the exception copyable .
+                JTextArea textArea = new JTextArea(e.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(400, 200));
+
+                // This what enables text area to be selectable and copyable
+                textArea.setEditable(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+
+                // Show the dialog with the error message
+                JOptionPane.showMessageDialog(this, scrollPane, "Error in clear function", JOptionPane.ERROR_MESSAGE);
         }
     }
     int ID =0;
+    private boolean EstInvalidePourAjouter() {
+    return 
+           Date.getDate() == null ||
+           HeureDepart.toString().isEmpty() ||
+           HeureArrive.toString().isEmpty() ||
+           PlaceDisponibleClasse1.toString().isEmpty() ||
+           PlaceDisponibleClasse2.toString().isEmpty() ||
+            PlaceDisponibleClasse1.getText()== null ||
+           PlaceDisponibleClasse2.getText() == null;
+}
+    
     private void GtAjouterBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GtAjouterBTNMouseClicked
-        if( Origine.getSelectedIndex()== -1 || Destination.getSelectedIndex()== -1) {
-        JOptionPane.showMessageDialog(this, "Missing information ");
+        if( EstInvalidePourAjouter() ) {
+            JOptionPane.showMessageDialog(this, "Missing information ");
+       } else if( Origine.getSelectedItem() ==  Destination.getSelectedItem() ) {
+            JOptionPane.showMessageDialog(this, "L'origine et la destination ne peuvent pas etre les memes ");
         }else {
             try {
                  CalculID();
@@ -357,7 +396,7 @@ public class GestionTrajet extends javax.swing.JFrame {
                  Add.setString(5, HeureDepart.getValue().toString());
                  Add.setString(6, HeureArrive.getValue().toString());
                  Add.setInt(7, Integer.valueOf(PlaceDisponibleClasse1.getText()));
-                 Add.setInt(7, Integer.valueOf(PlaceDisponibleClasse2.getText()));
+                 Add.setInt(8, Integer.valueOf(PlaceDisponibleClasse2.getText()));
                  
                  int raw = Add.executeUpdate();
                  JOptionPane.showMessageDialog(this, "Trajet Ajouté");
@@ -366,7 +405,18 @@ public class GestionTrajet extends javax.swing.JFrame {
                  
             
             }catch(Exception e){
-                e.printStackTrace();
+                // This exception is prompted by GTP 3.5 to make the exception copyable .
+                JTextArea textArea = new JTextArea(e.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(400, 200));
+
+                // This what enables text area to be selectable and copyable
+                textArea.setEditable(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+
+                // Show the dialog with the error message
+                JOptionPane.showMessageDialog(this, scrollPane, "Error in ajouter", JOptionPane.ERROR_MESSAGE);
             }
             
         }
@@ -426,7 +476,18 @@ public class GestionTrajet extends javax.swing.JFrame {
                  Clear();
                 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, e);
+                // This exception is prompted by GTP 3.5 to make the exception copyable .
+                JTextArea textArea = new JTextArea(e.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(400, 200));
+
+                // This what enables text area to be selectable and copyable
+                textArea.setEditable(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+
+                // Show the dialog with the error message
+                JOptionPane.showMessageDialog(this, scrollPane, "Error in editer", JOptionPane.ERROR_MESSAGE);
             }
          
         }
@@ -447,8 +508,19 @@ public class GestionTrajet extends javax.swing.JFrame {
                 AfficherTrajet();
                 Clear();
                 
-            } catch (SQLException ex) {
-                Logger.getLogger(GestionTrajet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+                // This exception is prompted by GTP 3.5 to make the exception copyable .
+                JTextArea textArea = new JTextArea(e.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(400, 200));
+
+                // This what enables text area to be selectable and copyable
+                textArea.setEditable(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+
+                // Show the dialog with the error message
+                JOptionPane.showMessageDialog(this, scrollPane, "Error in delete function", JOptionPane.ERROR_MESSAGE);
             }
          
         }
@@ -458,6 +530,11 @@ public class GestionTrajet extends javax.swing.JFrame {
         new Mainform().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GtRetourBTNMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        new RechercheAvance().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     private void AfficherTrajet(){
         try{
@@ -489,7 +566,18 @@ public class GestionTrajet extends javax.swing.JFrame {
             
         
         }catch(Exception e) {
-            e.printStackTrace();
+            // This exception is prompted by GTP 3.5 to make the exception copyable .
+                JTextArea textArea = new JTextArea(e.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(400, 200));
+
+                // This what enables text area to be selectable and copyable
+                textArea.setEditable(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+
+                // Show the dialog with the error message
+                JOptionPane.showMessageDialog(this, scrollPane, "Error in Afficher function", JOptionPane.ERROR_MESSAGE);
         }
     
     
@@ -543,6 +631,7 @@ public class GestionTrajet extends javax.swing.JFrame {
     private javax.swing.JTextField PlaceDisponibleClasse1;
     private javax.swing.JTextField PlaceDisponibleClasse2;
     private javax.swing.JTextField TrajetId;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
