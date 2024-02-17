@@ -294,7 +294,8 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                     jTable1.setModel(model);
                     ResultSetMetaData rsmd = rs.getMetaData();
                     int columnCount = rsmd.getColumnCount();
-
+                    
+                    
                     // Add column names to the model
                 for (int i = 1; i <= columnCount-1; i++) {
                     model.addColumn(rsmd.getColumnName(i));
@@ -340,7 +341,10 @@ public class ConsultationHoraire extends javax.swing.JFrame {
 
     private void PaimentBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaimentBTNMouseClicked
            if (j!=0){
-               new login().setVisible(true);
+               int id = Integer.parseInt(ID.getText());
+               String clas=Classe.getSelectedItem().toString();
+               
+               new Prix(id,clas).setVisible(true);
                this.dispose();
            }else{
                JOptionPane.showMessageDialog(this,"Chosie une ligne");
