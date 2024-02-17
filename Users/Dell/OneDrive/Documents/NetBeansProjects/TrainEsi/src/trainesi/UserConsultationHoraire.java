@@ -63,7 +63,7 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
         Classe = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        consultationTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -150,7 +150,7 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
         jLabel6.setText("Date");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 128, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        consultationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -161,7 +161,12 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        consultationTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultationTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(consultationTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 330, 710, -1));
 
@@ -206,36 +211,33 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
                  String PDCi ="PlaceDisponibleClasse" + Classe.getSelectedItem().toString()+"Tbl";
                 rs = st.executeQuery("SELECT * FROM trajettable WHERE OrigineTbl='" + Origine.getSelectedItem().toString() + "' AND DestinationTbl='" + Destination.getSelectedItem().toString() + "' AND DateTbl='" + formattedDate + "'AND "+PDCi+" > 0");
                 //Taking rows from Rs and displaying it to the table 
-                if (!rs.next()) {
+               if (!rs.next()) {
                     // ResultSet is empty
-                        JOptionPane.showMessageDialog(this,"trajet inexistant");
-}
-                else{
-                    DefaultTableModel model = new DefaultTableModel(); // Create a new DefaultTableModel
-                    jTable1.setModel(model); // Set the table model to jTable1
-                    ResultSetMetaData rsmd = rs.getMetaData(); // Get metadata from the ResultSet
-                    int columnCount = rsmd.getColumnCount(); // Get the number of columns
+                    JOptionPane.showMessageDialog(this, "trajet inexistant");
+                } else {
+                    DefaultTableModel model = new DefaultTableModel();
+                    consultationTable.setModel(model);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
 
                     // Add column names to the model
-                    for (int i = 1; i <= columnCount; i++) {
-                        model.addColumn(rsmd.getColumnName(i)); // Add column names from ResultSet metadata
+                    for (int i = 1; i <= columnCount - 1; i++) {
+                        model.addColumn(rsmd.getColumnName(i));
                     }
 
                     // Add data rows to the model
-                    while (rs.next()) {
-                        Object[] row = new Object[columnCount]; // Create an array to hold row data
+                    do {
+                        Object[] row = new Object[columnCount];
                         for (int i = 1; i <= columnCount; i++) {
-                            row[i - 1] = rs.getObject(i); // Get data from ResultSet and add to row array
+                            row[i - 1] = rs.getObject(i);
                         }
-                        model.addRow(row); // Add row array to the model
-                    }
-
+                        model.addRow(row);
+                    } while (rs.next()); // Use do-while loop to process the current row before moving to the next one
                 }
                 
-                
             }
-            catch (SQLException e) {
-                        JOptionPane.showMessageDialog(this,"trajet inexistant");
+            catch (Exception e) {
+                        JOptionPane.showMessageDialog(this,e);
     }
 
 
@@ -246,20 +248,22 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
         new UserConsultationHoraire().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GtRetablirBTNMouseClicked
-    public int j=0 ;
+    
     int id ;
     int classe ;
     private void PaimentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaimentBTNActionPerformed
         
     }//GEN-LAST:event_PaimentBTNActionPerformed
     private void PaimentBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaimentBTNMouseClicked
-
-        try {
-            new ConfirmationPaiment(id , classe).setVisible(true);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
+        new CarteReductionCheck(id , classe).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_PaimentBTNMouseClicked
+  
+    private void consultationTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultationTableMouseClicked
+        DefaultTableModel model = (DefaultTableModel)consultationTable.getModel();
+        int MyIndex = consultationTable.getSelectedRow();
+        id  = Integer.valueOf(model.getValueAt(MyIndex , 0).toString()); 
+    }//GEN-LAST:event_consultationTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -307,12 +311,12 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
     private javax.swing.JButton GtSearchBTN;
     private javax.swing.JComboBox<String> Origine;
     private javax.swing.JButton PaimentBTN;
+    private javax.swing.JTable consultationTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

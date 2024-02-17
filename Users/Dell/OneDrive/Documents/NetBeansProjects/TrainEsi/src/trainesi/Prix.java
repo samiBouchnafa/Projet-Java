@@ -265,7 +265,7 @@ private double getPrixFromDatabase(String origine, String destination, int class
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Prix(id, classe).setVisible(true);
+               // new Prix(id, classe).setVisible(true);
             }
         });
 

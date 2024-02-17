@@ -451,7 +451,7 @@ public class AdminGestionTrajet extends javax.swing.JFrame {
             CalculID();  
             try {
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root" , "");
-                String Query ="Update trajettable set OrigineTbl=?, DestinationTbl=?, DateTbl=?, HeureDepartTbl=?, HeureArriveTbl=?, PlaceDisponibleClasse1Tbl=?, PlaceDiponibleClasse2Tbl=? where TrajetIdTbl=?";
+                String Query ="Update trajettable set OrigineTbl=?, DestinationTbl=?, DateTbl=?, HeureDepartTbl=?, HeureArriveTbl=?, PlaceDisponibleClasse1Tbl=?, PlaceDisponibleClasse2Tbl=? where TrajetIdTbl=?";
                 PreparedStatement Add = Con.prepareStatement(Query);
 
                 
