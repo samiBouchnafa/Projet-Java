@@ -27,12 +27,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nadaa
  */
-public class admin_reduction extends javax.swing.JFrame {
+public class AdminGestionCarteReduction extends javax.swing.JFrame {
 
     /**
      * Creates new form admin_reduction
      */
-    public admin_reduction() {
+    public AdminGestionCarteReduction() {
         initComponents();
         AfficherTrajet();
         idcarte.setEnabled(false);
@@ -376,7 +376,7 @@ public class admin_reduction extends javax.swing.JFrame {
 
     // Vérifiez si une ligne est sélectionnée
     if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(admin_reduction.this, "Veuillez sélectionner une ligne à éditer.");
+        JOptionPane.showMessageDialog(AdminGestionCarteReduction.this, "Veuillez sélectionner une ligne à éditer.");
         return;
     }
 
@@ -422,7 +422,7 @@ public class admin_reduction extends javax.swing.JFrame {
 
     // Vérifiez si des lignes sont sélectionnées
     if (selectedRows.length == 0) {
-        JOptionPane.showMessageDialog(admin_reduction.this, "Veuillez sélectionner au moins une ligne à supprimer.");
+        JOptionPane.showMessageDialog(AdminGestionCarteReduction.this, "Veuillez sélectionner au moins une ligne à supprimer.");
         return;
     }
 
@@ -475,19 +475,22 @@ public class admin_reduction extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admin_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionCarteReduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admin_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionCarteReduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admin_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionCarteReduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admin_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionCarteReduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new admin_reduction().setVisible(true);
+            new AdminGestionCarteReduction().setVisible(true);
         });
     }
 

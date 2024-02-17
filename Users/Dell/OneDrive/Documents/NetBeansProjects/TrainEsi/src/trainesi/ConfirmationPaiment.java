@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Dell
  */
-public class Confirmation extends javax.swing.JFrame {
+public class ConfirmationPaiment extends javax.swing.JFrame {
 
     /**
      * Creates new form Confirmation
@@ -28,7 +28,7 @@ public class Confirmation extends javax.swing.JFrame {
      */
     public int class_number ;
     public int trajet_id;
-    public Confirmation(int id , int class_num) throws SQLException {
+    public ConfirmationPaiment(int id , int class_num) throws SQLException {
         this.trajet_id = id;
         this.class_number = class_num;
         initComponents();
@@ -97,19 +97,18 @@ public class Confirmation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addComponent(jToggleButton1)
-                .addGap(11, 11, 11)
+                .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +128,7 @@ public class Confirmation extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void ouiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ouiMouseClicked
-        new prix(trajet_id, class_number).setVisible(true);
+        new CarteReductionCheck(trajet_id, class_number).setVisible(true);
         this.dispose();
         //NADA remove the main function of class prix to avoid errors
         //NADA the constructor is expected to have two arguments of type int 

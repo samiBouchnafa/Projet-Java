@@ -32,14 +32,14 @@ import javax.swing.text.DefaultFormatter;
  *
  * @author Dell
  */
-public class GestionTrajet extends javax.swing.JFrame {
+public class AdminGestionTrajet extends javax.swing.JFrame {
     
     
 
     /**
      * Creates new form GestionTrajet
      */
-    public GestionTrajet() {
+    public AdminGestionTrajet() {
         initComponents();
         AfficherTrajet();
         TrajetId.setEditable(false);
@@ -451,8 +451,10 @@ public class GestionTrajet extends javax.swing.JFrame {
             CalculID();  
             try {
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root" , "");
-                 String Query ="Update trajettable set OrigineTbl=?, DestinationTbl=?, DateTbl=?, HeureDepartTbl=?, HeureArriveTbl=?, PlaceDisponibleClasse1Tbl=?, PlaceDiponibleClasse2Tbl=? where TrajetIdTbl=?";
-                 PreparedStatement Add = Con.prepareStatement(Query);
+                String Query ="Update trajettable set OrigineTbl=?, DestinationTbl=?, DateTbl=?, HeureDepartTbl=?, HeureArriveTbl=?, PlaceDisponibleClasse1Tbl=?, PlaceDiponibleClasse2Tbl=? where TrajetIdTbl=?";
+                PreparedStatement Add = Con.prepareStatement(Query);
+
+                
    
                  Add.setString(1, Origine.getSelectedItem().toString());
                  Add.setString(2, Destination.getSelectedItem().toString());
@@ -599,20 +601,21 @@ public class GestionTrajet extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGestionTrajet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GestionTrajet().setVisible(true);
+                new AdminGestionTrajet().setVisible(true);
             }
         });
     }

@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
  *
  * @author Dell
  */
-public class login extends javax.swing.JFrame {
+public class AdminLogIn extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
-    public login() {
+    public AdminLogIn() {
         initComponents();
     }
 
@@ -195,7 +195,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTextFieldMouseClicked
 
     private void RetourBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetourBTNMouseClicked
-        new login0().setVisible(true);
+        new AdminOrUser().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RetourBTNMouseClicked
 
@@ -216,21 +216,23 @@ public class login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+                new AdminLogIn().setVisible(true);
             }
         });
     }

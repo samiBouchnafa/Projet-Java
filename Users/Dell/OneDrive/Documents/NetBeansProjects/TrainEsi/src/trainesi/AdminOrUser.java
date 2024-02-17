@@ -8,12 +8,12 @@ package trainesi;
  *
  * @author Dell
  */
-public class login0 extends javax.swing.JFrame {
+public class AdminOrUser extends javax.swing.JFrame {
 
     /**
      * Creates new form login0
      */
-    public login0() {
+    public AdminOrUser() {
         initComponents();
     }
 
@@ -32,6 +32,11 @@ public class login0 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         UserBTN.setText("NORMAL USER");
+        UserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UserBTNMouseClicked(evt);
+            }
+        });
         UserBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserBTNActionPerformed(evt);
@@ -89,9 +94,14 @@ public class login0 extends javax.swing.JFrame {
     }//GEN-LAST:event_AdminBTNActionPerformed
 
     private void AdminBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminBTNMouseClicked
-        new login().setVisible(true);
+        new AdminLogIn().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AdminBTNMouseClicked
+
+    private void UserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserBTNMouseClicked
+        new UserConsultationHoraire().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_UserBTNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -110,20 +120,21 @@ public class login0 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminOrUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminOrUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminOrUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminOrUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login0().setVisible(true);
+                new AdminOrUser().setVisible(true);
             }
         });
     }

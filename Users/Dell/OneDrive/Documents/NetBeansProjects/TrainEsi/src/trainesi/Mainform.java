@@ -27,7 +27,7 @@ public class Mainform extends javax.swing.JFrame {
     private void initComponents() {
 
         MainTicketsBTN = new javax.swing.JButton();
-        MainPassengersBTN = new javax.swing.JButton();
+        CarteReduction = new javax.swing.JButton();
         MainFlightBTN = new javax.swing.JButton();
         RetourBTN = new javax.swing.JButton();
 
@@ -43,18 +43,18 @@ public class Mainform extends javax.swing.JFrame {
             }
         });
 
-        MainPassengersBTN.setBackground(new java.awt.Color(204, 204, 255));
-        MainPassengersBTN.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        MainPassengersBTN.setForeground(new java.awt.Color(51, 51, 51));
-        MainPassengersBTN.setText("Gestion des cartes reduction");
-        MainPassengersBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        CarteReduction.setBackground(new java.awt.Color(204, 204, 255));
+        CarteReduction.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        CarteReduction.setForeground(new java.awt.Color(51, 51, 51));
+        CarteReduction.setText("Gestion des cartes reduction");
+        CarteReduction.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MainPassengersBTNMouseClicked(evt);
+                CarteReductionMouseClicked(evt);
             }
         });
-        MainPassengersBTN.addActionListener(new java.awt.event.ActionListener() {
+        CarteReduction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MainPassengersBTNActionPerformed(evt);
+                CarteReductionActionPerformed(evt);
             }
         });
 
@@ -92,7 +92,7 @@ public class Mainform extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MainTicketsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MainPassengersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CarteReduction, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MainFlightBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
@@ -102,7 +102,7 @@ public class Mainform extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(MainFlightBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(MainPassengersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CarteReduction, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(MainTicketsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -117,27 +117,27 @@ public class Mainform extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MainFlightBTNActionPerformed
 
-    private void MainPassengersBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainPassengersBTNActionPerformed
+    private void CarteReductionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarteReductionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MainPassengersBTNActionPerformed
+    }//GEN-LAST:event_CarteReductionActionPerformed
 
     private void MainTicketsBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainTicketsBTNMouseClicked
         //new ticketBookings().setVisible(true);
         //this.dispose();
     }//GEN-LAST:event_MainTicketsBTNMouseClicked
 
-    private void MainPassengersBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainPassengersBTNMouseClicked
-        //new passengers().setVisible(true);
-        //this.dispose();        
-    }//GEN-LAST:event_MainPassengersBTNMouseClicked
+    private void CarteReductionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CarteReductionMouseClicked
+        new AdminGestionCarteReduction().setVisible(true);
+        this.dispose();        
+    }//GEN-LAST:event_CarteReductionMouseClicked
 
     private void MainFlightBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainFlightBTNMouseClicked
-        new GestionTrajet().setVisible(true);
+        new AdminGestionTrajet().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MainFlightBTNMouseClicked
 
     private void RetourBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetourBTNMouseClicked
-        new login0().setVisible(true);
+        new AdminOrUser().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RetourBTNMouseClicked
 
@@ -178,8 +178,8 @@ public class Mainform extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CarteReduction;
     private javax.swing.JButton MainFlightBTN;
-    private javax.swing.JButton MainPassengersBTN;
     private javax.swing.JButton MainTicketsBTN;
     private javax.swing.JButton RetourBTN;
     // End of variables declaration//GEN-END:variables

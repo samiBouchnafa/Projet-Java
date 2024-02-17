@@ -110,7 +110,7 @@ public class splash extends javax.swing.JFrame {
            }
        }catch(Exception e) {
                }
-       new login0().setVisible(true);
+       new AdminOrUser().setVisible(true);
        Mysplash.dispose();
        
        

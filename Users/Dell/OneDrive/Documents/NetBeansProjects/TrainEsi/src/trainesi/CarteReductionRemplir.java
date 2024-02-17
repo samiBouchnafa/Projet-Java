@@ -24,14 +24,17 @@ import trainesi.DataManager;
  *
  * @author nadaa
  */
-public class carte_reduction extends javax.swing.JFrame {
+public class CarteReductionRemplir extends javax.swing.JFrame {
 
     /**
      * Creates new form carte_reduction
      */
-    public carte_reduction(int idcarte, int classe) {
-        
+    int trajet_id;
+    int classe;
+    public CarteReductionRemplir(int idcarte, int classe) {
         initComponents();
+        this.trajet_id =idcarte;
+        this.classe =classe;
         
     }
 
@@ -51,9 +54,8 @@ public class carte_reduction extends javax.swing.JFrame {
         Type_carte = new javax.swing.JComboBox<>();
         az = new javax.swing.JLabel();
         ae = new javax.swing.JLabel();
-        ar = new javax.swing.JLabel();
         continuer = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Retour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,16 +70,16 @@ public class carte_reduction extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
+                .addGap(124, 124, 124))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
@@ -110,10 +112,6 @@ public class carte_reduction extends javax.swing.JFrame {
         ae.setForeground(new java.awt.Color(255, 255, 255));
         ae.setText("Type de la carte");
 
-        ar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        ar.setForeground(new java.awt.Color(255, 255, 255));
-        ar.setText("Date d'expiration");
-
         continuer.setText("Continuer");
         continuer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,10 +127,10 @@ public class carte_reduction extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Retour");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Retour.setText("Retour");
+        Retour.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                RetourMouseClicked(evt);
             }
         });
 
@@ -141,24 +139,20 @@ public class carte_reduction extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Type_carte, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idCarte, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                    .addComponent(ae, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Type_carte, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ae, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(az, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(idCarte, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(continuer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Retour, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
         jPanel2Layout.setVerticalGroup(
@@ -172,12 +166,10 @@ public class carte_reduction extends javax.swing.JFrame {
                 .addComponent(ae)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Type_carte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(ar)
-                .addGap(38, 38, 38)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(continuer)
-                    .addComponent(jButton2))
+                    .addComponent(Retour))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -189,7 +181,7 @@ public class carte_reduction extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,42 +210,70 @@ public class carte_reduction extends javax.swing.JFrame {
     }//GEN-LAST:event_idCarteActionPerformed
 
     private void continuerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continuerMouseClicked
-         // Obtenez les valeurs des champs
+      // Obtenez les valeurs des champs
     String idCarteValue = idCarte.getText();
     String typeCarteValue = Type_carte.getSelectedItem().toString();
-    Date dateExpirationValue = date_expiration.getDate();
+    //Date dateExpirationValue = date_expiration.getDate();
         
 
     // Validez si les champs sont remplis
-    if (idCarteValue.isEmpty() || typeCarteValue.isEmpty() || dateExpirationValue == null) {
+    if (idCarteValue.isEmpty() || typeCarteValue.isEmpty() /*|| dateExpirationValue== null*/ ) {
         JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.");
         return;
     }
 
     try {
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitrain", "root", "");
-    PreparedStatement validationQuery = con.prepareStatement("SELECT * FROM carte_reduction WHERE idcarte=? AND type_carte=? AND date_expiration=?");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root", "");
+    PreparedStatement validationQuery = con.prepareStatement("SELECT * FROM carte_reduction WHERE idcarte=? AND type_carte=? ");
 
     // Assurez-vous de remplacer les types de données appropriés en fonction de votre base de données
     validationQuery.setString(1, idCarte.getText());
     validationQuery.setString(2, Type_carte.getSelectedItem().toString());
-    
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String expirationDate = sdf.format(date_expiration.getDate());
-
-    // Utilisez la date_expiration sous forme de chaîne pour la comparaison
-    validationQuery.setString(3, expirationDate);
-
     ResultSet result = validationQuery.executeQuery();
 
     if (result.next()) {
-        // Les informations sont correctes, l'utilisateur peut continuer
-        // Ajoutez ici le code pour continuer vers la prochaine étape
-        JOptionPane.showMessageDialog(this, "Informations correctes. Vous pouvez continuer.");
-        new Payer().setVisible(true);
-        this.dispose();
+        //Date du Voyage
+        String query1 = "SELECT DateTbl FROM trajettable WHERE TrajetIdTbl = ?";
+        PreparedStatement preparedStatement = con.prepareStatement(query1);
+        preparedStatement.setInt(1,trajet_id ); // Assuming trajetId is a String
+
+        ResultSet ResultTripDate = preparedStatement.executeQuery();
+        Date date = null;
+        if (ResultTripDate.next()) {
+            date = ResultTripDate.getDate("DateTbl");
+        }
+        //Date d'expiration
+        String query2 ="SELECT date_expiration FROM carte_reduction WHERE idCarte=? AND Type_carte=? ";
+        PreparedStatement ExpirationDate = con.prepareStatement(query2);
+        ExpirationDate.setString(1, idCarte.getText());
+        ExpirationDate.setString(2, Type_carte.getSelectedItem().toString());
+        ResultSet resultExpirationDate = ExpirationDate.executeQuery();
+        Date Expirationdate =null;
+        if (resultExpirationDate.next()) {
+            Expirationdate = resultExpirationDate.getDate("date_expiration");
+        }
+        
+        //Comparer les deux dates :
+        if (date != null && Expirationdate != null) {
+        if (date.compareTo(Expirationdate) > 0) {
+            JOptionPane.showMessageDialog(null, "La carte est valide!");
+            int numero_carte =Integer.valueOf(idCarte.getText());
+            new RecapPaiment(trajet_id , classe , numero_carte ).setVisible(true); //must take two arguments (idtrajet , id carteReduction) 
+            this.dispose();
+            
+        } else {
+            System.out.println("The card is expired.");
+            JOptionPane.showMessageDialog(this, "Votre carte est expirée");
+            new CarteReductionCheck(trajet_id , classe).setVisible(true);
+            this.dispose();
+
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "L'une des deux date est vide ");
+            
+        }
+
     } else {
-        // Les informations sont incorrectes
         JOptionPane.showMessageDialog(this, "Informations incorrectes. Vérifiez les détails de la carte.");
     }
 
@@ -295,52 +315,23 @@ public class carte_reduction extends javax.swing.JFrame {
         
     }//GEN-LAST:event_continuerActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        new ClientId().setVisible(true);
+    private void RetourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetourMouseClicked
+        new CarteReductionCheck(trajet_id , classe).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_RetourMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(carte_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(carte_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(carte_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(carte_reduction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new carte_reduction().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Retour;
     private javax.swing.JComboBox<String> Type_carte;
     private javax.swing.JLabel ae;
-    private javax.swing.JLabel ar;
     private javax.swing.JLabel az;
     private javax.swing.JButton continuer;
     private javax.swing.JTextField idCarte;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
