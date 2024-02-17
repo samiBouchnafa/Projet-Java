@@ -105,13 +105,10 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="date_expiration" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ae" min="-2" pref="110" max="-2" attributes="0"/>
-                                  <Component id="az" min="-2" pref="110" max="-2" attributes="0"/>
-                                  <Component id="ar" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ae" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="az" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="ar" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -139,9 +136,7 @@
                   <Component id="Type_carte" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Component id="ar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Component id="date_expiration" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="continuer" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -237,8 +232,6 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
           </Events>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="date_expiration">
         </Component>
       </SubComponents>
     </Container>

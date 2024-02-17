@@ -29,8 +29,10 @@ public class carte_reduction extends javax.swing.JFrame {
     /**
      * Creates new form carte_reduction
      */
-    public carte_reduction() {
+    public carte_reduction(int idcarte, int classe) {
+        
         initComponents();
+        
     }
 
     /**
@@ -52,7 +54,6 @@ public class carte_reduction extends javax.swing.JFrame {
         ar = new javax.swing.JLabel();
         continuer = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        date_expiration = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,12 +149,10 @@ public class carte_reduction extends javax.swing.JFrame {
                             .addComponent(idCarte, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(date_expiration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ae, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(az, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ae, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(az, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
@@ -175,9 +174,7 @@ public class carte_reduction extends javax.swing.JFrame {
                 .addComponent(Type_carte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addComponent(ar)
-                .addGap(2, 2, 2)
-                .addComponent(date_expiration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(continuer)
                     .addComponent(jButton2))
@@ -342,7 +339,6 @@ public class carte_reduction extends javax.swing.JFrame {
     private javax.swing.JLabel ar;
     private javax.swing.JLabel az;
     private javax.swing.JButton continuer;
-    private com.toedter.calendar.JDateChooser date_expiration;
     private javax.swing.JTextField idCarte;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
