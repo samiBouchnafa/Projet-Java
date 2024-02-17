@@ -26,7 +26,11 @@ public class Confirmation extends javax.swing.JFrame {
      * Creates new form Confirmation
      * @param 
      */
-    public Confirmation(int id) throws SQLException {
+    public int class_number ;
+    public int trajet_id;
+    public Confirmation(int id , int class_num) throws SQLException {
+        this.trajet_id = id;
+        this.class_number = class_num;
         initComponents();
         AfficherTrajet(id);
         
@@ -43,7 +47,7 @@ public class Confirmation extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        oui = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -58,7 +62,12 @@ public class Confirmation extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Oui");
+        oui.setText("Oui");
+        oui.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ouiMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Non");
 
@@ -81,7 +90,7 @@ public class Confirmation extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(oui, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101))
@@ -105,7 +114,7 @@ public class Confirmation extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(oui, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,6 +127,14 @@ public class Confirmation extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void ouiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ouiMouseClicked
+        new prix(trajet_id, class_number).setVisible(true);
+        this.dispose();
+        //NADA remove the main function of class prix to avoid errors
+        //NADA the constructor is expected to have two arguments of type int 
+        //those argument are then used to retrieve the trip ... (rest of the functionalities )
+    }//GEN-LAST:event_ouiMouseClicked
 
     
     /**
@@ -154,10 +171,10 @@ public class Confirmation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton oui;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
