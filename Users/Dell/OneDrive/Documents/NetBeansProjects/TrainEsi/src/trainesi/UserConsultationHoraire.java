@@ -250,12 +250,16 @@ public class UserConsultationHoraire extends javax.swing.JFrame {
     }//GEN-LAST:event_GtRetablirBTNMouseClicked
     
     int id ;
-    int classe ;
+    private int getClassnum() {        
+        return Integer.valueOf(Classe.getSelectedItem().toString());
+    }
+
+    
     private void PaimentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaimentBTNActionPerformed
         
     }//GEN-LAST:event_PaimentBTNActionPerformed
     private void PaimentBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaimentBTNMouseClicked
-        new CarteReductionCheck(id , classe).setVisible(true);
+        new CarteReductionCheck(id , getClassnum()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_PaimentBTNMouseClicked
   

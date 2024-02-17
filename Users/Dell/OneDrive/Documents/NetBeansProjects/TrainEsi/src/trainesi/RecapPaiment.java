@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,6 +39,7 @@ public class RecapPaiment extends javax.swing.JFrame {
         this.trajet_id =trajet_id;
         this.classe = classe;
         this.carte_id = carte_id;
+        afficherTrajet();
     }
 
     /**
@@ -52,16 +54,6 @@ public class RecapPaiment extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        Origine = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        Destination = new javax.swing.JLabel();
-        Date = new javax.swing.JLabel();
-        HeureDepart = new javax.swing.JLabel();
-        HeureArrive = new javax.swing.JLabel();
-        CarteValide = new javax.swing.JLabel();
-        PrixInitial = new javax.swing.JLabel();
-        PrixFinal = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -74,6 +66,14 @@ public class RecapPaiment extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         Valider = new javax.swing.JButton();
         Valider1 = new javax.swing.JButton();
+        Origine = new javax.swing.JTextField();
+        Destination = new javax.swing.JTextField();
+        Date = new javax.swing.JTextField();
+        HeureDepart = new javax.swing.JTextField();
+        HeureArrive = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        PrixInitial = new javax.swing.JTextField();
+        PrixFinal = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel1.setText("Carte de Reduction");
@@ -89,83 +89,6 @@ public class RecapPaiment extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel3.setText("Paiment ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 72, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        Origine.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        Origine.setText("Origine :");
-
-        Destination.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        Destination.setText("Destination :");
-
-        Date.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        Date.setText("Date :");
-
-        HeureDepart.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        HeureDepart.setText("HeureDepart :");
-
-        HeureArrive.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        HeureArrive.setText("Heure d'arrivée :");
-
-        CarteValide.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        CarteValide.setText("Carte de reduction :");
-
-        PrixInitial.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        PrixInitial.setText("Prix initiale :");
-
-        PrixFinal.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
-        PrixFinal.setText("Prix final :");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(HeureArrive, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Origine, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(Destination, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81)))
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(HeureDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CarteValide, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Origine)
-                    .addComponent(jLabel18))
-                .addGap(18, 18, 18)
-                .addComponent(Destination)
-                .addGap(18, 18, 18)
-                .addComponent(Date)
-                .addGap(18, 18, 18)
-                .addComponent(HeureDepart)
-                .addGap(18, 18, 18)
-                .addComponent(HeureArrive)
-                .addGap(30, 30, 30)
-                .addComponent(CarteValide)
-                .addGap(30, 30, 30)
-                .addComponent(PrixInitial)
-                .addGap(30, 30, 30)
-                .addComponent(PrixFinal)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 202, -1));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -250,10 +173,18 @@ public class RecapPaiment extends javax.swing.JFrame {
                 ValiderActionPerformed(evt);
             }
         });
-        getContentPane().add(Valider, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 130, 50));
+        getContentPane().add(Valider, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 130, 50));
 
         Valider1.setText("VALIDER");
-        getContentPane().add(Valider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 130, 50));
+        getContentPane().add(Valider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 130, 50));
+        getContentPane().add(Origine, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 71, -1));
+        getContentPane().add(Destination, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 71, -1));
+        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 71, -1));
+        getContentPane().add(HeureDepart, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 71, -1));
+        getContentPane().add(HeureArrive, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 71, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 71, -1));
+        getContentPane().add(PrixInitial, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 71, -1));
+        getContentPane().add(PrixFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 71, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -263,21 +194,25 @@ public class RecapPaiment extends javax.swing.JFrame {
     }//GEN-LAST:event_ValiderActionPerformed
      private void afficherTrajet() {
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb" , "root" , "");
-            St = Con.createStatement();
-            String query = "SELECT OrigineTbl, DestinationTbl, DateTbl, HeureDepart, HeureArrive FROM trajettable WHERE TrajetId=" +trajet_id;
-            Rs = St.executeQuery(query);
-            Origine.setText(Rs.getString("OrigineTbl"));
-            Destination.setText(Rs.getString("DestinationTbl"));
-            Date.setText(Rs.getDate("DateTbl").toString());
-            HeureDepart.setText(Rs.getTime("HeureDepart").toString());
-            HeureArrive.setText(Rs.getTime("HeureArrive").toString());
             
-            PrixInitial.setText(Rs.getString("OrigineTbl"));
-            PrixFinal.setText(Rs.getString("OrigineTbl"));
-        } catch (SQLException ex) {
-            Logger.getLogger(RecapPaiment.class.getName()).log(Level.SEVERE, null, ex);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root", "");
+        Statement st = con.createStatement();
+        String query = "SELECT OrigineTbl, DestinationTbl, DateTbl, HeureDepart, HeureArrive FROM trajettable WHERE TrajetId=" + trajet_id;
+        ResultSet rs = st.executeQuery(query);
+        if (rs.next()) {
+            Origine.setText("hello");
+            Destination.setText(rs.getString("DestinationTbl"));
+            Date.setText(rs.getDate("DateTbl").toString());
+            HeureDepart.setText(rs.getTime("HeureDepart").toString());
+            HeureArrive.setText(rs.getTime("HeureArrive").toString());
+
+            PrixInitial.setText(""); // You seem to be missing the correct value here
+            PrixFinal.setText(""); // You seem to be missing the correct value here
         }
+    } catch (Exception e) {
+        e.printStackTrace(); // It's advisable to print or log the exception for debugging purposes.
+    }
+
             
             
             
@@ -292,18 +227,16 @@ public class RecapPaiment extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CarteValide;
-    private javax.swing.JLabel Date;
-    private javax.swing.JLabel Destination;
-    private javax.swing.JLabel HeureArrive;
-    private javax.swing.JLabel HeureDepart;
-    private javax.swing.JLabel Origine;
-    private javax.swing.JLabel PrixFinal;
-    private javax.swing.JLabel PrixInitial;
+    private javax.swing.JTextField Date;
+    private javax.swing.JTextField Destination;
+    private javax.swing.JTextField HeureArrive;
+    private javax.swing.JTextField HeureDepart;
+    private javax.swing.JTextField Origine;
+    private javax.swing.JTextField PrixFinal;
+    private javax.swing.JTextField PrixInitial;
     private javax.swing.JButton Valider;
     private javax.swing.JButton Valider1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -315,7 +248,7 @@ public class RecapPaiment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
