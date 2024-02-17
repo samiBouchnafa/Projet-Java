@@ -290,32 +290,28 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                 rs = st.executeQuery("SELECT * FROM trajettable WHERE OrigineTbl='" + Origine.getSelectedItem().toString() + "' AND DestinationTbl='" + Destination.getSelectedItem().toString() + "' AND DateTbl='" + formattedDate + "'AND "+PDCi+" > 0");
                 //Taking rows from Rs and displaying it to the table 
 
-                 if(rs.getInt("PlaceDisponibleClasse" + Classe.getSelectedItem().toString()+"Tbl")>0){
-                     DefaultTableModel model = new DefaultTableModel();
+                    DefaultTableModel model = new DefaultTableModel();
                     jTable1.setModel(model);
                     ResultSetMetaData rsmd = rs.getMetaData();
                     int columnCount = rsmd.getColumnCount();
 
                     // Add column names to the model
-                    for (int i = 1; i <= columnCount-1; i++) {
-                        model.addColumn(rsmd.getColumnName(i));
+                for (int i = 1; i <= columnCount-1; i++) {
+                    model.addColumn(rsmd.getColumnName(i));
                 }
 
                 // Add data rows to the model
-                    while (rs.next()) {
-                        Object[] row = new Object[columnCount];
-                        for (int i = 1; i <= columnCount; i++) {
-                            row[i - 1] = rs.getObject(i);
-                        }
-                        model.addRow(row);
+                while (rs.next()) {
+                    
+                    Object[] row = new Object[columnCount];
+                    for (int i = 1; i <= columnCount; i++) {
+                        row[i - 1] = rs.getObject(i);
+                    }
+                    model.addRow(row);
                 }
                 
                 
-            }else{
-                     JOptionPane.showMessageDialog(this,"Place épuisé");
-                 }
-                     
-                 }                 
+            }
             catch (SQLException e) {
                         System.err.println("Error executing query: " +e.getMessage());
     }
