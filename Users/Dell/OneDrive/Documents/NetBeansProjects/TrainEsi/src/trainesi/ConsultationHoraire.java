@@ -218,7 +218,7 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                         .addComponent(GtRetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(GtRetablirBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE))
+                        .addGap(0, 35, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,16 +236,19 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(GtSearchBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PaimentBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
+                                    .addComponent(PaimentBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(Destination, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Origine, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(Destination, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Origine, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -289,7 +292,11 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                  String PDCi ="PlaceDisponibleClasse" + Classe.getSelectedItem().toString()+"Tbl";
                 rs = st.executeQuery("SELECT * FROM trajettable WHERE OrigineTbl='" + Origine.getSelectedItem().toString() + "' AND DestinationTbl='" + Destination.getSelectedItem().toString() + "' AND DateTbl='" + formattedDate + "'AND "+PDCi+" > 0");
                 //Taking rows from Rs and displaying it to the table 
-
+                if (!rs.next()) {
+                    // ResultSet is empty
+                        JOptionPane.showMessageDialog(this,"trajet inexistant");
+}
+                else{
                     DefaultTableModel model = new DefaultTableModel();
                     jTable1.setModel(model);
                     ResultSetMetaData rsmd = rs.getMetaData();
@@ -310,11 +317,12 @@ public class ConsultationHoraire extends javax.swing.JFrame {
                     }
                     model.addRow(row);
                 }
+                }
                 
                 
             }
             catch (SQLException e) {
-                        System.err.println("Error executing query: " +e.getMessage());
+                        JOptionPane.showMessageDialog(this,"trajet inexistant");
     }
 
 
@@ -325,30 +333,31 @@ public class ConsultationHoraire extends javax.swing.JFrame {
         new ConsultationHoraire().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GtRetablirBTNMouseClicked
-    int j=0;
+    public int j=0 ;
+    int id ;
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        int MyIndex = jTable1.getSelectedRow();
-        j+=1;
-        
-
+      DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+       int MyIndex = jTable1.getSelectedRow();
+       id  = Integer.valueOf(model.getValueAt(MyIndex , 0).toString()); 
+       int classe = Integer.parseInt(Classe.getSelectedItem().toString());
+       
+       
+       
+     
+       
 
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void PaimentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaimentBTNActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_PaimentBTNActionPerformed
-
     private void PaimentBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaimentBTNMouseClicked
-           if (j!=0){
-               int id = Integer.parseInt(ID.getText());
-               String clas=Classe.getSelectedItem().toString();
-               
-               new Prix(id,clas).setVisible(true);
-               this.dispose();
-           }else{
-               JOptionPane.showMessageDialog(this,"Chosie une ligne");
-           }
+
+        try {
+            new Confirmation(id).setVisible(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
     }//GEN-LAST:event_PaimentBTNMouseClicked
 
     /**
@@ -381,7 +390,8 @@ public class ConsultationHoraire extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultationHoraire().setVisible(true);
+               ConsultationHoraire cons1 = new ConsultationHoraire();
+               cons1.setVisible(true);
             }
         });
     }
