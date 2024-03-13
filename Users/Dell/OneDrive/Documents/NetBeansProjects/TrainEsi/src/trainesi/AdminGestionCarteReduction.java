@@ -37,7 +37,7 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
         AfficherTrajet();
         idcarte.setEnabled(false);
         try {
-        Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitrain", "root", "");
+        Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root", "");
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
@@ -113,6 +113,11 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
         });
 
         retour.setText("Retour");
+        retour.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                retourMouseClicked(evt);
+            }
+        });
 
         Editer.setText("Editer");
         Editer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -274,7 +279,7 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
         } else{
             try{ 
                 
-                Connection Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitrain","root","");
+                Connection Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb","root","");
                 PreparedStatement Add=Con.prepareStatement("insert into carte_reduction values(?,?,?,?,?)");
                 
                 
@@ -329,7 +334,7 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
     
     private void AfficherTrajet(){
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitrain" , "root" , "");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb" , "root" , "");
             St = Con.createStatement();
             Rs = St.executeQuery("select * from carte_reduction");
             
@@ -391,7 +396,7 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
 
     // Mettez à jour la base de données avec les nouvelles valeurs
     try {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitrain", "root", "");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root", "");
         PreparedStatement updateQuery = con.prepareStatement("UPDATE carte_reduction SET type_carte=?, pourcentage=?, idVoyage=? WHERE idcarte=?");
 
         updateQuery.setString(1, newType);
@@ -432,7 +437,7 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
     if (option == JOptionPane.YES_OPTION) {
         // Supprimez les lignes de la base de données
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitrain", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/esitraindb", "root", "");
             PreparedStatement deleteQuery = con.prepareStatement("DELETE FROM carte_reduction WHERE idcarte=?");
 
             for (int selectedRow : selectedRows) {
@@ -457,6 +462,11 @@ public class AdminGestionCarteReduction extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_supprimerMouseClicked
+
+    private void retourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retourMouseClicked
+        new AdminGestionTrajet().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_retourMouseClicked
 
     /**
      * @param args the command line arguments
